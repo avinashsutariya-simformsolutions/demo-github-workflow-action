@@ -37,13 +37,13 @@ jobs:
             ${{ runner.os }}-nuget-
 
       - name: Restore dependencies
-        run: dotnet restore
+        run: dotnet restore ./DemoApp/DemoApp.slnx
 
       - name: Build solution (Release)
-        run: dotnet build --configuration Release --no-restore
+        run: dotnet build ./DemoApp/DemoApp.slnx --configuration Release --no-restore
 
       - name: Run tests with TRX and code coverage
-        run: dotnet test --no-build --logger trx --collect:"XPlat Code Coverage"
+        run: dotnet test ./DemoApp/DemoApp.slnx --no-build --logger trx --collect:"XPlat Code Coverage"
 
       - name: Upload test and coverage artifacts
         # Persist TRX and coverage outputs so failures can be diagnosed from the Actions UI.
